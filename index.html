@@ -52,11 +52,20 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);max-width:22ch}
 .steps h3{font-size:1.2rem;margin-bottom:.4rem}
 .steps p{margin:0;color:var(--muted);font-size:.98rem}
 .contact{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-form{display:grid;gap:1rem}
-label{display:grid;gap:.3rem;font-weight:500;font-size:.95rem}
-input,textarea{font:inherit;padding:.75rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);width:100%}
-textarea{min-height:130px;resize:vertical}
-.btn.dark{background:var(--navy);color:#fff}
+form.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:2rem 2.25rem;background:#17171b;border:1px solid #2a2a31;padding:2.5rem;border-radius:2px;color:#fff}
+.contact-form label{display:grid;gap:.55rem;font-weight:500;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:#8090ad}
+.contact-form label.full{grid-column:1 / -1}
+.contact-form input,.contact-form textarea,.contact-form select{font:inherit;padding:.45rem 0 .75rem;border:0;border-bottom:1px solid #435064;border-radius:0;background:transparent;color:#fff;width:100%;outline:none}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#778399;opacity:1}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-bottom-color:#b65cff}
+.contact-form textarea{min-height:105px;resize:vertical}
+.phone-field{display:grid;grid-template-columns:145px 1fr;gap:1rem}
+.phone-field select{color:#aab5c8;cursor:pointer}
+.phone-field select option{background:#17171b;color:#fff}
+.required{color:#c15cff}
+.contact-form .btn{justify-self:start}
+.btn.dark{background:#fff;color:#17171b}
+@media(max-width:700px){form.contact-form{grid-template-columns:1fr;padding:1.5rem;gap:1.5rem}.contact-form label.full{grid-column:auto}.phone-field{grid-template-columns:115px 1fr}}
 footer{background:var(--navy);color:#c8d9e2;padding:2rem 0;font-size:.95rem}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media(max-width:700px){.logo img{width:190px;height:46px}nav{width:100%;justify-content:flex-start}.hero{padding:4rem 0}}
@@ -136,52 +145,56 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <p><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></p>
 <p><strong>Location</strong><br>Bangalore, India</p>
 </div>
-<form id="contactForm" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
-<label>First Name<input type="text" name="firstName" required autocomplete="given-name"></label>
-<label>Last Name<input type="text" name="lastName" required autocomplete="family-name"></label>
-<label>Email<input type="email" name="email" required autocomplete="email"></label>
-<label>Country Code<select name="countryCode" required autocomplete="tel-country-code">
-<option value="+91">India (+91)</option>
-<option value="+1">United States / Canada (+1)</option>
-<option value="+44">United Kingdom (+44)</option>
-<option value="+61">Australia (+61)</option>
-<option value="+65">Singapore (+65)</option>
-<option value="+971">United Arab Emirates (+971)</option>
-<option value="+974">Qatar (+974)</option>
-<option value="+966">Saudi Arabia (+966)</option>
-<option value="+49">Germany (+49)</option>
-<option value="+33">France (+33)</option>
-<option value="+81">Japan (+81)</option>
-<option value="+82">South Korea (+82)</option>
-<option value="+86">China (+86)</option>
-<option value="+64">New Zealand (+64)</option>
-<option value="+27">South Africa (+27)</option>
-<option value="+55">Brazil (+55)</option>
-<option value="+52">Mexico (+52)</option>
-<option value="+39">Italy (+39)</option>
-<option value="+34">Spain (+34)</option>
-<option value="+31">Netherlands (+31)</option>
-<option value="+41">Switzerland (+41)</option>
-<option value="+46">Sweden (+46)</option>
-<option value="+47">Norway (+47)</option>
-<option value="+45">Denmark (+45)</option>
-<option value="+32">Belgium (+32)</option>
-<option value="+7">Russia / Kazakhstan (+7)</option>
-<option value="+90">Turkey (+90)</option>
-<option value="+92">Pakistan (+92)</option>
-<option value="+880">Bangladesh (+880)</option>
-<option value="+94">Sri Lanka (+94)</option>
-<option value="+977">Nepal (+977)</option>
-<option value="+62">Indonesia (+62)</option>
-<option value="+60">Malaysia (+60)</option>
-<option value="+66">Thailand (+66)</option>
-<option value="+84">Vietnam (+84)</option>
-<option value="+63">Philippines (+63)</option>
-</select></label>
-<label>Phone<input type="tel" name="phone" required autocomplete="tel" inputmode="tel"></label>
-<label>Message<textarea name="message" required></textarea></label>
+<form id="contactForm" class="contact-form" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
+<label>First Name <span class="required">*</span><input type="text" name="firstName" required autocomplete="given-name" placeholder="John"></label>
+<label>Last Name <span class="required">*</span><input type="text" name="lastName" required autocomplete="family-name" placeholder="Doe"></label>
+<label>Email Address <span class="required">*</span><input type="email" name="email" required autocomplete="email" placeholder="john@example.com"></label>
+<label>Phone <span class="required">*</span>
+  <span class="phone-field">
+    <select name="countryCode" required autocomplete="tel-country-code" aria-label="Country code">
+      <option value="+91">+91 India</option>
+      <option value="+1">+1 US / Canada</option>
+      <option value="+44">+44 UK</option>
+      <option value="+61">+61 Australia</option>
+      <option value="+65">+65 Singapore</option>
+      <option value="+971">+971 UAE</option>
+      <option value="+974">+974 Qatar</option>
+      <option value="+966">+966 Saudi Arabia</option>
+      <option value="+49">+49 Germany</option>
+      <option value="+33">+33 France</option>
+      <option value="+81">+81 Japan</option>
+      <option value="+82">+82 South Korea</option>
+      <option value="+86">+86 China</option>
+      <option value="+64">+64 New Zealand</option>
+      <option value="+27">+27 South Africa</option>
+      <option value="+55">+55 Brazil</option>
+      <option value="+52">+52 Mexico</option>
+      <option value="+39">+39 Italy</option>
+      <option value="+34">+34 Spain</option>
+      <option value="+31">+31 Netherlands</option>
+      <option value="+41">+41 Switzerland</option>
+      <option value="+46">+46 Sweden</option>
+      <option value="+47">+47 Norway</option>
+      <option value="+45">+45 Denmark</option>
+      <option value="+32">+32 Belgium</option>
+      <option value="+7">+7 Russia / Kazakhstan</option>
+      <option value="+90">+90 Turkey</option>
+      <option value="+92">+92 Pakistan</option>
+      <option value="+880">+880 Bangladesh</option>
+      <option value="+94">+94 Sri Lanka</option>
+      <option value="+977">+977 Nepal</option>
+      <option value="+62">+62 Indonesia</option>
+      <option value="+60">+60 Malaysia</option>
+      <option value="+66">+66 Thailand</option>
+      <option value="+84">+84 Vietnam</option>
+      <option value="+63">+63 Philippines</option>
+    </select>
+    <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="(555) 000-0000" aria-label="Phone number">
+  </span>
+</label>
+<label class="full">Message <span class="required">*</span><textarea name="message" required placeholder="Tell us about your project..."></textarea></label>
 <button class="btn dark" type="submit">Send message</button>
-<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:var(--muted);"></p>
+<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:#aab5c8;"></p>
 </form>
 </div>
 </section>
