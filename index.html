@@ -136,17 +136,47 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <p><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></p>
 <p><strong>Location</strong><br>Bangalore, India</p>
 </div>
-<form action="#" method="POST">
+<form id="contactForm" action="https://script.google.com/macros/s/AKfycbx_KJHz9lit9F6RpeooNMBOZ7EmrR5gJWzHYFJjb0uwmRRxal6vi_N1zdAw7ucWJYxz/exec" method="POST">
 <label>Name<input type="text" name="name" required autocomplete="name"></label>
 <label>Email<input type="email" name="email" required autocomplete="email"></label>
 <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
 <label>Message<textarea name="message" required></textarea></label>
 <button class="btn dark" type="submit">Send message</button>
+<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:var(--muted);"></p>
 </form>
 </div>
 </section>
 </main>
 
 <footer><div class="wrap"><span>&copy; 2026 CogniCloudSolutions. All rights reserved.</span><span>Cloud &middot; CRM &middot; AI &middot; Automation</span></div></footer>
+<script>
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+
+contactForm.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const button = contactForm.querySelector("button[type=\"submit\"]");
+  button.disabled = true;
+  button.textContent = "Sending...";
+  formStatus.textContent = "";
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: new URLSearchParams(new FormData(contactForm)),
+      mode: "no-cors"
+    });
+
+    contactForm.reset();
+    formStatus.textContent = "Thank you! Your message has been sent. We will get back to you soon.";
+  } catch (error) {
+    formStatus.textContent = "Sorry, we could not send your message. Please email hello@cognicloudsolutions.com directly.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Send message";
+  }
+});
+</script>
 </body>
 </html>
