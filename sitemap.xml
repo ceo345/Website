@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.cognicloudsolutions.com/</loc>
-  </url>
+  <url><loc>https://www.cognicloudsolutions.com/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/salesforce-consulting/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/salesforce-implementation/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/salesforce-development/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/crm-integration-migration/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/servicenow-consulting/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/aws-data-engineering-etl/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/zoho-crm-consulting/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/dedicated-software-engineers/</loc></url>
+  <url><loc>https://www.cognicloudsolutions.com/api-integration/</loc></url>
 </urlset>
