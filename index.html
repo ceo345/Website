@@ -48,57 +48,65 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f8fa;--surface:#fff;--ink:#12263a;--muted:#4a5f72;--teal:#0f7c8a;--amber:#e8a33d;--line:#c9d9e0;--navy:#12263a}
+:root{--bg:#f6f9fc;--surface:#fff;--ink:#0b172a;--muted:#53657a;--line:#dce5ee;--navy:#071525;--navy2:#0d2138;--cyan:#39d7e8;--violet:#8b5cf6;--accent:#f4b44b;--shadow:0 20px 60px rgba(7,21,37,.10)}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
-h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;line-height:1.1;margin:0;letter-spacing:-.02em}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.04rem/1.7 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 10%,rgba(57,215,232,.07),transparent 25%),radial-gradient(circle at 90% 50%,rgba(139,92,246,.05),transparent 28%);z-index:-1}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;line-height:1.08;margin:0;letter-spacing:-.035em}
 a{color:inherit}
-.wrap{max-width:1080px;margin:auto;padding:0 1.25rem}
-header{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.65rem 1.25rem}
-.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
-.logo img{width:220px;height:52px;object-fit:contain;object-position:left center;filter:brightness(0) invert(1)}
-.logo span{display:none}
-nav{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;font-weight:500}
-nav a{text-decoration:none;color:#c8d9e2}
-nav a:hover{color:#fff}
-.btn{display:inline-block;background:var(--amber);color:var(--ink);padding:.8rem 1.4rem;border-radius:6px;font-weight:600;text-decoration:none;border:0;cursor:pointer}
-.btn:hover{filter:brightness(1.05)}
-.btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
-.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 80% 20%,rgba(76,192,207,.28),transparent 45%),radial-gradient(circle at 10% 90%,rgba(232,163,61,.16),transparent 40%),linear-gradient(160deg,#0d1d2d,#12324a);color:#fff;padding:5rem 0 4.5rem}
-.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);max-width:13ch}
-.hero p{font-size:1.2rem;color:#c8d9e2;max-width:54ch;margin:1.4rem 0 2rem}
-.cta{display:flex;gap:.8rem;flex-wrap:wrap}
-section{padding:4rem 0}
+.wrap{max-width:1180px;margin:auto;padding:0 1.35rem}
+header{position:sticky;top:0;z-index:50;background:rgba(7,21,37,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;min-height:76px}
+.logo{display:inline-flex;align-items:center;text-decoration:none}.logo img{width:205px;height:50px;object-fit:contain;filter:brightness(0) invert(1)}
+nav{display:flex;gap:1.35rem;align-items:center;flex-wrap:wrap;font-weight:500}
+nav a{text-decoration:none;color:#b9c9d9;transition:.2s ease}
+nav a:hover{color:#fff;transform:translateY(-1px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:linear-gradient(135deg,var(--accent),#ffd27a);color:#081827;padding:.82rem 1.35rem;border-radius:10px;font-weight:700;text-decoration:none;border:0;cursor:pointer;box-shadow:0 10px 25px rgba(244,180,75,.18);transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(244,180,75,.25)}
+.btn.ghost{background:rgba(255,255,255,.04);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:none}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 78% 18%,rgba(57,215,232,.18),transparent 30%),radial-gradient(circle at 18% 80%,rgba(139,92,246,.16),transparent 30%),linear-gradient(145deg,#06111f,#0b2038 55%,#071525);color:#fff;padding:7rem 0 6rem}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(57,215,232,.14);border-radius:50%;right:-130px;top:-150px;box-shadow:0 0 0 70px rgba(57,215,232,.025),0 0 0 140px rgba(57,215,232,.015)}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;color:#8feef6;text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:700;margin-bottom:1.1rem}
+.eyebrow:before{content:"";width:30px;height:1px;background:var(--cyan)}
+.hero h1{font-size:clamp(2.8rem,7vw,5.4rem);max-width:12ch}
+.hero p{font-size:1.22rem;color:#c3d2df;max-width:66ch;margin:1.5rem 0 2.2rem}
+.cta{display:flex;gap:.85rem;flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;max-width:760px;margin-top:4rem}
+.hero-stat{padding:1rem 1.15rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);border-radius:12px;backdrop-filter:blur(10px)}
+.hero-stat strong{display:block;color:#fff;font-size:1.05rem}.hero-stat span{color:#8ea5b8;font-size:.86rem}
+section{padding:5.5rem 0}
 section.white{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-h2{font-size:clamp(1.8rem,4vw,2.6rem);max-width:22ch}
-.intro{color:var(--muted);max-width:58ch;margin:1rem 0 2.2rem}
-.about{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:2.5rem}
+.section-head h2{font-size:clamp(2rem,4vw,3.15rem);max-width:15ch}
+.intro{color:var(--muted);max-width:62ch;margin:0}
+.about{display:grid;gap:3rem;grid-template-columns:1.05fr .95fr;align-items:start}
 .about p{margin:0 0 1rem;color:var(--muted)}
-.model{background:#fff;border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem}
-.model h3{font-size:1.2rem;margin-bottom:.3rem}
-.model p{margin:0}
-.grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.svc{border-top:4px solid var(--teal);padding-top:1rem}
-.svc:nth-child(even){border-color:var(--amber)}
-.svc h3{font-size:1.35rem;margin-bottom:.5rem}
-.svc p{margin:0 0 .6rem;color:var(--muted);font-size:1rem}
-.svc ul{margin:0;padding-left:1.1rem;font-size:.97rem}
-.steps{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));padding:0;list-style:none;margin:0;counter-reset:s}
-.steps li{counter-increment:s;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:1.3rem}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;margin-bottom:.8rem}
-.steps h3{font-size:1.2rem;margin-bottom:.4rem}
-.steps p{margin:0;color:var(--muted);font-size:.98rem}
-.contact{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-form{display:grid;gap:1rem}
-label{display:grid;gap:.3rem;font-weight:500;font-size:.95rem}
-input,textarea{font:inherit;padding:.75rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);width:100%}
-textarea{min-height:130px;resize:vertical}
-.btn.dark{background:var(--navy);color:#fff}
-footer{background:var(--navy);color:#c8d9e2;padding:2rem 0;font-size:.95rem}
-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-@media(max-width:700px){.logo img{width:190px;height:46px}nav{width:100%;justify-content:flex-start}.hero{padding:4rem 0}}
+.model{background:linear-gradient(145deg,#fff,#f6fbfd);border:1px solid var(--line);border-left:4px solid var(--cyan);border-radius:14px;padding:1.35rem 1.5rem;margin-bottom:1rem;box-shadow:0 8px 25px rgba(7,21,37,.045)}
+.model h3{font-size:1.18rem;margin-bottom:.35rem}.model p{margin:0}
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(3,minmax(0,1fr))}
+.svc{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem;min-height:235px;box-shadow:0 8px 30px rgba(7,21,37,.045);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;overflow:hidden}
+.svc:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--cyan),var(--violet));opacity:.85}
+.svc:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#bfd3e0}
+.svc h3{font-size:1.32rem;margin-bottom:.6rem}.svc h3 a{text-decoration:none}.svc h3 a:hover{color:#0c8290}
+.svc p{margin:0 0 .8rem;color:var(--muted);font-size:.98rem}.svc ul{margin:0;padding-left:1.05rem;font-size:.92rem;color:#41566b}.svc li{margin:.22rem 0}
+.steps{display:grid;gap:1rem;grid-template-columns:repeat(4,minmax(0,1fr));padding:0;list-style:none;margin:0;counter-reset:s}
+.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.4rem;box-shadow:0 8px 25px rgba(7,21,37,.04)}
+.steps li:before{content:counter(s,decimal-leading-zero);display:block;color:#0f8794;font-size:.78rem;font-weight:800;letter-spacing:.12em;margin-bottom:2rem}
+.steps h3{font-size:1.2rem;margin-bottom:.45rem}.steps p{margin:0;color:var(--muted);font-size:.96rem}
+.contact{display:grid;gap:3rem;grid-template-columns:.85fr 1.15fr;align-items:start}
+.contact h2{font-size:clamp(2rem,4vw,3rem);max-width:13ch}
+.contact .intro{margin-top:1rem}
+.contact-info{display:grid;gap:.8rem;margin-top:2rem}.contact-info strong{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#7890a4}.contact-info a{font-weight:600;text-decoration:none}.contact-info a:hover{color:#0f8794}
+form{display:grid;gap:1rem;background:#101d2c;border-radius:18px;padding:2rem;color:#fff;box-shadow:0 25px 60px rgba(7,21,37,.18)}
+label{display:grid;gap:.35rem;font-weight:600;font-size:.9rem;color:#c8d7e4}
+input,textarea{font:inherit;padding:.8rem 0;border:0;border-bottom:1px solid #405366;border-radius:0;background:transparent;color:#fff;width:100%;outline:0}input:focus,textarea:focus{border-bottom-color:var(--cyan)}textarea{min-height:125px;resize:vertical}
+.btn.dark{background:linear-gradient(135deg,var(--cyan),#8feef6);color:#071525;justify-self:start}
+footer{background:#06111f;color:#9eb0c1;padding:2.2rem 0;font-size:.92rem}footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.about,.contact{grid-template-columns:1fr}.hero{padding:5rem 0}.hero-stats{margin-top:3rem}}
+@media(max-width:700px){.wrap{padding:0 1rem}header .wrap{min-height:68px}.logo img{width:180px;height:44px}nav{width:100%;gap:.8rem;font-size:.9rem}.hero{padding:4rem 0 3.5rem}.hero h1{font-size:clamp(2.5rem,13vw,3.6rem)}.hero-stats{grid-template-columns:1fr}.hero-stat{display:flex;justify-content:space-between;gap:1rem}.section-head{display:block}.section-head .intro{margin-top:1rem}.grid,.steps{grid-template-columns:1fr}section{padding:4rem 0}form{padding:1.35rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -117,8 +125,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <main id="top">
 <div class="hero">
 <div class="wrap">
-<h1>Salesforce Consulting, CRM Integration & Cloud Solutions</h1>
-<p>CogniCloudSolutions is a Salesforce consulting company helping businesses with Salesforce implementation, CRM integration, ServiceNow, AWS data engineering, Zoho CRM, automation and dedicated engineering services.</p>
+<div class="eyebrow">Salesforce · CRM · Cloud · Data</div><h1>Technology solutions that move your business forward.</h1>
+<p>CogniCloudSolutions helps businesses modernize Salesforce, CRM, cloud data and enterprise workflows with practical consulting, integration and engineering.</p>
 <div class="cta">
 <a class="btn" href="#contact">Book a free consultation</a>
 <a class="btn ghost" href="#services">Explore services</a>
@@ -141,7 +149,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 <section id="services" class="white">
 <div class="wrap">
-<h2>What we do</h2>
+<div class="section-head"><div><div class="eyebrow" style="color:#0f8794">Capabilities</div><h2>Everything you need to connect, modernize and scale.</h2></div><p class="intro">Focused expertise across CRM, cloud, data and enterprise automation—delivered as one connected team.</p></div>
 <p class="intro">Salesforce consulting, CRM integration, cloud data engineering and automation services from one team. Each capability can stand alone or work together to solve your business and technology needs.</p>
 <div class="grid">
 <div class="svc"><h3><a href="salesforce-consulting/">Salesforce Consulting & Implementation</a></h3><p>Salesforce consulting services for Sales Cloud, Service Cloud and Marketing Cloud, tailored to how your team works.</p><ul><li>Implementation and customization</li><li>Integrations and data migration</li><li>Ongoing support</li></ul></div>
@@ -156,7 +164,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 <section id="process">
 <div class="wrap">
-<h2>How we work</h2>
+<div class="section-head"><div><div class="eyebrow" style="color:#0f8794">Our approach</div><h2>A clear path from idea to impact.</h2></div><p class="intro">Simple, collaborative and transparent from the first conversation through launch and ongoing support.</p></div>
 <p class="intro">A simple process that keeps you informed from the first call to support after launch.</p>
 <ol class="steps">
 <li><h3>Discover</h3><p>We learn your goals, systems and constraints.</p></li>
@@ -170,10 +178,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <section id="contact" class="white">
 <div class="wrap contact">
 <div>
-<h2>Tell us what you need to connect</h2>
-<p class="intro">Share a few lines about your systems and goals. We will reply with next steps.</p>
-<p><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></p>
-<p><strong>Location</strong><br>Bangalore, India</p>
+<div class="eyebrow" style="color:#0f8794">Start a conversation</div><h2>Let's build something better.</h2>
+<p class="intro">Tell us what you're trying to improve, integrate, migrate or build. We'll come back with practical next steps.</p>
+<div class="contact-info"><div><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></div><div><strong>Location</strong><br>Bangalore, India</div></div>
 </div>
 <form id="contactForm" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
 <label>Name<input type="text" name="name" required autocomplete="name"></label>
