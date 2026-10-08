@@ -99,10 +99,20 @@ section.white{background:var(--surface);border-top:1px solid var(--line);border-
 .contact h2{font-size:clamp(2rem,4vw,3rem);max-width:13ch}
 .contact .intro{margin-top:1rem}
 .contact-info{display:grid;gap:.8rem;margin-top:2rem}.contact-info strong{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#7890a4}.contact-info a{font-weight:600;text-decoration:none}.contact-info a:hover{color:#0f8794}
-form{display:grid;gap:1rem;background:#101d2c;border-radius:18px;padding:2rem;color:#fff;box-shadow:0 25px 60px rgba(7,21,37,.18)}
-label{display:grid;gap:.35rem;font-weight:600;font-size:.9rem;color:#c8d7e4}
-input,textarea{font:inherit;padding:.8rem 0;border:0;border-bottom:1px solid #405366;border-radius:0;background:transparent;color:#fff;width:100%;outline:0}input:focus,textarea:focus{border-bottom-color:var(--cyan)}textarea{min-height:125px;resize:vertical}
-.btn.dark{background:linear-gradient(135deg,var(--cyan),#8feef6);color:#071525;justify-self:start}
+form.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 1.5rem;background:linear-gradient(145deg,#071525 0%,#0c2238 55%,#101d31 100%);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:2.25rem;box-shadow:0 28px 70px rgba(7,21,37,.22);color:#fff;position:relative;overflow:hidden}
+form.contact-form:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(57,215,232,.09);filter:blur(10px);right:-90px;top:-100px;pointer-events:none}
+.contact-form label{display:grid;gap:.45rem;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#aebfd0;min-width:0;position:relative;z-index:1}
+.contact-form label.full{grid-column:1/-1}
+.contact-form input,.contact-form textarea,.contact-form select{font:inherit;font-size:1rem;padding:.8rem .9rem;border:1px solid #405366;border-radius:10px;background:rgba(255,255,255,.045);color:#fff;width:100%;outline:0;transition:.2s ease;min-width:0}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#7890a5}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--cyan);background:rgba(57,215,232,.055);box-shadow:0 0 0 3px rgba(57,215,232,.09)}
+.contact-form textarea{min-height:145px;resize:vertical}
+.phone-field{display:grid;grid-template-columns:125px minmax(0,1fr);gap:.7rem;min-width:0}
+.phone-field select{cursor:pointer;color:#d7e4ee}
+.phone-field select option{background:#0c2238;color:#fff}
+.contact-form .btn{margin-top:.25rem;justify-self:start}
+.btn.dark{background:linear-gradient(135deg,var(--cyan),#9bf1f7);color:#071525;justify-self:start;padding:.9rem 1.5rem}
+@media(max-width:700px){form.contact-form{grid-template-columns:1fr;padding:1.4rem}.contact-form label.full{grid-column:auto}.phone-field{grid-template-columns:105px minmax(0,1fr)}}
 footer{background:#06111f;color:#9eb0c1;padding:2.2rem 0;font-size:.92rem}footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.about,.contact{grid-template-columns:1fr}.hero{padding:5rem 0}.hero-stats{margin-top:3rem}}
 @media(max-width:700px){.wrap{padding:0 1rem}header .wrap{min-height:68px}.logo img{width:180px;height:44px}nav{width:100%;gap:.8rem;font-size:.9rem}.hero{padding:4rem 0 3.5rem}.hero h1{font-size:clamp(2.5rem,13vw,3.6rem)}.hero-stats{grid-template-columns:1fr}.hero-stat{display:flex;justify-content:space-between;gap:1rem}.section-head{display:block}.section-head .intro{margin-top:1rem}.grid,.steps{grid-template-columns:1fr}section{padding:4rem 0}form{padding:1.35rem}}
@@ -182,13 +192,20 @@ footer{background:#06111f;color:#9eb0c1;padding:2.2rem 0;font-size:.92rem}footer
 <p class="intro">Tell us what you're trying to improve, integrate, migrate or build. We'll come back with practical next steps.</p>
 <div class="contact-info"><div><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></div><div><strong>Location</strong><br>Bangalore, India</div></div>
 </div>
-<form id="contactForm" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
-<label>Name<input type="text" name="name" required autocomplete="name"></label>
-<label>Email<input type="email" name="email" required autocomplete="email"></label>
-<label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-<label>Message<textarea name="message" required></textarea></label>
-<button class="btn dark" type="submit">Send message</button>
-<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:var(--muted);"></p>
+<form id="contactForm" class="contact-form" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
+<label>Name <span aria-hidden="true" style="color:#39d7e8">*</span><input type="text" name="name" required autocomplete="name" placeholder="Your full name"></label>
+<label>Email <span aria-hidden="true" style="color:#39d7e8">*</span><input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></label>
+<label class="full">Phone <span aria-hidden="true" style="color:#39d7e8">*</span>
+<span class="phone-field">
+<select name="countryCode" required autocomplete="tel-country-code" aria-label="Country code">
+<option value="+91">+91 India</option><option value="+1">+1 US / Canada</option><option value="+44">+44 UK</option><option value="+61">+61 Australia</option><option value="+65">+65 Singapore</option><option value="+971">+971 UAE</option><option value="+974">+974 Qatar</option><option value="+966">+966 Saudi Arabia</option><option value="+49">+49 Germany</option><option value="+33">+33 France</option><option value="+81">+81 Japan</option><option value="+82">+82 South Korea</option><option value="+86">+86 China</option><option value="+64">+64 New Zealand</option><option value="+27">+27 South Africa</option><option value="+55">+55 Brazil</option><option value="+52">+52 Mexico</option><option value="+39">+39 Italy</option><option value="+34">+34 Spain</option><option value="+31">+31 Netherlands</option><option value="+41">+41 Switzerland</option><option value="+46">+46 Sweden</option><option value="+47">+47 Norway</option><option value="+45">+45 Denmark</option><option value="+32">+32 Belgium</option><option value="+7">+7 Russia / Kazakhstan</option><option value="+90">+90 Turkey</option><option value="+92">+92 Pakistan</option><option value="+880">+880 Bangladesh</option><option value="+94">+94 Sri Lanka</option><option value="+977">+977 Nepal</option><option value="+62">+62 Indonesia</option><option value="+60">+60 Malaysia</option><option value="+66">+66 Thailand</option><option value="+84">+84 Vietnam</option><option value="+63">+63 Philippines</option>
+</select>
+<input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Enter phone number" aria-label="Phone number">
+</span>
+</label>
+<label class="full">Message <span aria-hidden="true" style="color:#39d7e8">*</span><textarea name="message" required placeholder="Tell us about your project, goals, or requirements..."></textarea></label>
+<button class="btn dark" type="submit">Send enquiry <span>→</span></button>
+<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:#aebfd0;"></p>
 </form>
 </div>
 </section>
