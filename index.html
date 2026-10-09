@@ -153,6 +153,27 @@ form.contact-form:before{background:rgba(22,139,232,.10)}
 footer{background:#09234b;color:#d6e8fb}
 @media(max-width:700px){.logo img{width:210px;height:52px}}
 
+
+/* Animated technology and platform logo strip */
+.tech-strip{overflow:hidden;padding:1.35rem 0;background:#fff;border-top:1px solid #d9e7f7;border-bottom:1px solid #d9e7f7}
+.tech-strip-heading{text-align:center;color:#5b7390;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700;margin:0 0 1rem}
+.tech-marquee{display:flex;overflow:hidden;gap:0;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.tech-track{display:flex;align-items:center;gap:1.1rem;flex-shrink:0;min-width:max-content;padding-right:1.1rem;animation:tech-scroll 36s linear infinite}
+.tech-marquee:hover .tech-track{animation-play-state:paused}
+.tech-chip{display:flex;align-items:center;gap:.7rem;min-width:190px;padding:.72rem 1rem;border:1px solid #e0ebf7;border-radius:14px;background:linear-gradient(145deg,#fff,#f4f9ff);box-shadow:0 5px 18px rgba(16,61,112,.045);color:#183858;font-weight:700;line-height:1.25}
+.tech-mark{width:38px;height:38px;display:grid;place-items:center;flex:0 0 38px;border-radius:11px;background:#e8f4ff;color:#0878d1;font-size:1rem;font-weight:800;letter-spacing:-.04em}
+.tech-mark.salesforce{background:#e6f6ff;color:#00a1e0;border-radius:50%}
+.tech-mark.servicenow{background:#e9f8f0;color:#25845b}
+.tech-mark.zoho{background:#fff0eb;color:#e65b45}
+.tech-mark.aws{background:#fff5e5;color:#b96b00}
+.tech-mark.api{background:#eaf0ff;color:#435ed8}
+.tech-mark.cloud{background:#e5f4ff;color:#0878d1}
+.tech-mark.engineering{background:#eef1ff;color:#4e61b8}
+.tech-label small{display:block;color:#7890a8;font-weight:500;font-size:.7rem;margin-top:.2rem}
+@keyframes tech-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.tech-track{animation:none}.tech-marquee{overflow-x:auto;mask-image:none}}
+@media(max-width:700px){.tech-chip{min-width:165px;padding:.65rem .8rem}.tech-track{gap:.75rem;padding-right:.75rem}.tech-strip{padding:1.1rem 0}}
+
 </style>
 </head>
 <body>
@@ -178,6 +199,34 @@ footer{background:#09234b;color:#d6e8fb}
 <a class="btn ghost" href="#services">Explore services</a>
 </div>
 </div>
+</div>
+
+<div class="tech-strip" aria-label="Our technology expertise">
+  <div class="wrap"><p class="tech-strip-heading">Platforms &amp; capabilities</p></div>
+  <div class="tech-marquee">
+    <div class="tech-track">
+      <div class="tech-chip"><span class="tech-mark salesforce">☁</span><span class="tech-label">Salesforce<small>CRM &amp; consulting</small></span></div>
+      <div class="tech-chip"><span class="tech-mark servicenow">now</span><span class="tech-label">ServiceNow<small>Workflow automation</small></span></div>
+      <div class="tech-chip"><span class="tech-mark zoho">Z</span><span class="tech-label">Zoho CRM<small>Sales &amp; operations</small></span></div>
+      <div class="tech-chip"><span class="tech-mark aws">aws</span><span class="tech-label">AWS<small>Cloud data &amp; ETL</small></span></div>
+      <div class="tech-chip"><span class="tech-mark cloud">↔</span><span class="tech-label">CRM Integration<small>Migration &amp; data</small></span></div>
+      <div class="tech-chip"><span class="tech-mark api">{ }</span><span class="tech-label">API Integration<small>Connectivity &amp; automation</small></span></div>
+      <div class="tech-chip"><span class="tech-mark cloud">☁</span><span class="tech-label">Cloud Solutions<small>Modernization &amp; scale</small></span></div>
+      <div class="tech-chip"><span class="tech-mark engineering">⌘</span><span class="tech-label">Software Engineering<small>Dedicated engineers</small></span></div>
+      <div class="tech-chip"><span class="tech-mark api">AI</span><span class="tech-label">AI &amp; Automation<small>Smarter workflows</small></span></div>
+    </div>
+    <div class="tech-track" aria-hidden="true">
+      <div class="tech-chip"><span class="tech-mark salesforce">☁</span><span class="tech-label">Salesforce<small>CRM &amp; consulting</small></span></div>
+      <div class="tech-chip"><span class="tech-mark servicenow">now</span><span class="tech-label">ServiceNow<small>Workflow automation</small></span></div>
+      <div class="tech-chip"><span class="tech-mark zoho">Z</span><span class="tech-label">Zoho CRM<small>Sales &amp; operations</small></span></div>
+      <div class="tech-chip"><span class="tech-mark aws">aws</span><span class="tech-label">AWS<small>Cloud data &amp; ETL</small></span></div>
+      <div class="tech-chip"><span class="tech-mark cloud">↔</span><span class="tech-label">CRM Integration<small>Migration &amp; data</small></span></div>
+      <div class="tech-chip"><span class="tech-mark api">{ }</span><span class="tech-label">API Integration<small>Connectivity &amp; automation</small></span></div>
+      <div class="tech-chip"><span class="tech-mark cloud">☁</span><span class="tech-label">Cloud Solutions<small>Modernization &amp; scale</small></span></div>
+      <div class="tech-chip"><span class="tech-mark engineering">⌘</span><span class="tech-label">Software Engineering<small>Dedicated engineers</small></span></div>
+      <div class="tech-chip"><span class="tech-mark api">AI</span><span class="tech-label">AI &amp; Automation<small>Smarter workflows</small></span></div>
+    </div>
+  </div>
 </div>
 
 <section id="about">
