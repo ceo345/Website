@@ -179,6 +179,17 @@ footer{background:#09234b;color:#d6e8fb}
 .hero h1{max-width:none;width:100%;white-space:nowrap;font-size:clamp(1.8rem,4.1vw,4.15rem);letter-spacing:-.045em}
 @media(max-width:760px){.hero h1{white-space:normal;font-size:clamp(2.35rem,9vw,3.35rem);max-width:14ch}}
 
+
+/* Clear, aligned form labels and strict contact validation */
+.contact-form label{display:flex;flex-direction:column;align-items:stretch;gap:.55rem;line-height:1.35}
+.contact-form label.full{grid-column:1/-1}
+.contact-form input,.contact-form textarea,.contact-form select{margin:0}
+.contact-form .phone-field{margin-top:.1rem}
+.contact-form .field-hint{font-size:.78rem;font-weight:400;letter-spacing:0;text-transform:none;color:#6d849e}
+.contact-form input:invalid:not(:placeholder-shown){border-color:#d9485f}
+.contact-form input:focus:invalid:not(:placeholder-shown){box-shadow:0 0 0 3px rgba(217,72,95,.10)}
+@media(max-width:700px){.contact-form label.full{grid-column:auto}}
+
 </style>
 </head>
 <body>
@@ -283,19 +294,20 @@ footer{background:#09234b;color:#d6e8fb}
 <div class="contact-info"><div><strong>Email</strong><br><a href="mailto:hello@cognicloudsolutions.com">hello@cognicloudsolutions.com</a></div><div><strong>Location</strong><br>Bangalore, India</div></div>
 </div>
 <form id="contactForm" class="contact-form" action="https://script.google.com/macros/s/AKfycby7FMXO1rtfaVryEMHI-EgoAi12WCTAoYp2iCmZPay3JEasLhc0bMcFN3RRq6M6rNP-/exec" method="POST">
-<label>Name <span aria-hidden="true" style="color:#39d7e8">*</span><input type="text" name="name" required autocomplete="name" placeholder="Your full name"></label>
-<label>Email <span aria-hidden="true" style="color:#39d7e8">*</span><input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></label>
-<label class="full">Phone <span aria-hidden="true" style="color:#39d7e8">*</span>
+<label>Name<input type="text" name="name" required autocomplete="name" placeholder="Your full name"></label>
+<label>Email<input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@company.com" pattern="[A-Za-z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+"></label>
+<label class="full">Phone
 <span class="phone-field">
 <select name="countryCode" required autocomplete="tel-country-code" aria-label="Country code">
 <option value="+91">+91 India</option><option value="+1">+1 US / Canada</option><option value="+44">+44 UK</option><option value="+61">+61 Australia</option><option value="+65">+65 Singapore</option><option value="+971">+971 UAE</option><option value="+974">+974 Qatar</option><option value="+966">+966 Saudi Arabia</option><option value="+49">+49 Germany</option><option value="+33">+33 France</option><option value="+81">+81 Japan</option><option value="+82">+82 South Korea</option><option value="+86">+86 China</option><option value="+64">+64 New Zealand</option><option value="+27">+27 South Africa</option><option value="+55">+55 Brazil</option><option value="+52">+52 Mexico</option><option value="+39">+39 Italy</option><option value="+34">+34 Spain</option><option value="+31">+31 Netherlands</option><option value="+41">+41 Switzerland</option><option value="+46">+46 Sweden</option><option value="+47">+47 Norway</option><option value="+45">+45 Denmark</option><option value="+32">+32 Belgium</option><option value="+7">+7 Russia / Kazakhstan</option><option value="+90">+90 Turkey</option><option value="+92">+92 Pakistan</option><option value="+880">+880 Bangladesh</option><option value="+94">+94 Sri Lanka</option><option value="+977">+977 Nepal</option><option value="+62">+62 Indonesia</option><option value="+60">+60 Malaysia</option><option value="+66">+66 Thailand</option><option value="+84">+84 Vietnam</option><option value="+63">+63 Philippines</option>
 </select>
-<input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Enter phone number" aria-label="Phone number">
+<input type="tel" name="phone" required autocomplete="tel-national" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="Enter 10-digit phone number" aria-label="Phone number" title="Enter exactly 10 digits, using numbers only.">
 </span>
+<small class="field-hint">Enter exactly 10 digits, numbers only.</small>
 </label>
-<label class="full">Message <span aria-hidden="true" style="color:#39d7e8">*</span><textarea name="message" required placeholder="Tell us about your project, goals, or requirements..."></textarea></label>
+<label class="full">Message<textarea name="message" required placeholder="Tell us about your project, goals, or requirements..."></textarea></label>
 <button class="btn dark" type="submit">Send enquiry <span>→</span></button>
-<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:#aebfd0;"></p>
+<p id="formStatus" role="status" aria-live="polite" style="margin:0;color:var(--muted);"></p>
 </form>
 </div>
 </section>
@@ -304,10 +316,22 @@ footer{background:#09234b;color:#d6e8fb}
 <footer><div class="wrap"><span>&copy; 2026 CogniCloudSolutions. All rights reserved.</span><span>Cloud &middot; CRM &middot; AI &middot; Automation</span></div></footer>
 <script>
 const contactForm = document.getElementById("contactForm");
+const emailField = contactForm.querySelector('input[name="email"]');
+const phoneField = contactForm.querySelector('input[name="phone"]');
 const formStatus = document.getElementById("formStatus");
 
+phoneField.addEventListener("input", function () {
+  const digitsOnly = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+  if (this.value !== digitsOnly) this.value = digitsOnly;
+  this.setCustomValidity(digitsOnly.length === 10 ? "" : "Enter exactly 10 digits, numbers only.");
+});
+emailField.addEventListener("input", function () {
+  this.setCustomValidity("");
+});
 contactForm.addEventListener("submit", async function (event) {
   event.preventDefault();
+  phoneField.setCustomValidity(/^[0-9]{10}$/.test(phoneField.value) ? "" : "Enter exactly 10 digits, numbers only.");
+  if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
 
   const button = contactForm.querySelector("button[type=\"submit\"]");
   button.disabled = true;
